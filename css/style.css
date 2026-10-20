@@ -1,0 +1,125 @@
+:root{
+  --primary:#74C465; --secondary:#00804C; --ternary:#DBE64C;
+  --white:#F6F7ED; --gray-800:#424242; --gray-400:#D9D9D9; --gray-200:#EEEEEE;
+  --pad:clamp(20px,7.3vw,141px);
+  --radius:25px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--gray-800);color:#fff;line-height:1.4;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--ternary);outline-offset:3px}
+
+/* Image slots: kalau file gambar belum ada, tampil kotak placeholder berlabel nama file */
+.img-slot{position:relative;overflow:hidden;background:linear-gradient(135deg,#5b6b5a,#3c4a3d)}
+.img-slot img{width:100%;height:100%;object-fit:cover}
+.img-slot.missing img{display:none}
+.img-slot.missing::after{content:"assets/images/" attr(data-name);position:absolute;inset:0;display:grid;place-items:center;padding:12px;text-align:center;font-size:13px;font-weight:500;color:var(--white);opacity:.85;word-break:break-all}
+.img-slot.bg{position:absolute;inset:0}
+.img-slot.blur img{filter:blur(7.5px);transform:scale(1.05)}
+.img-slot.blur-sm img{filter:blur(5px);transform:scale(1.05);opacity:.5}
+
+/* NAVBAR */
+.topbar{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px clamp(20px,2.6vw,50px);transition:background .25s}
+.topbar.scrolled{background:rgba(66,66,66,.88);backdrop-filter:blur(8px)}
+.brand{font-weight:600;font-size:20px;color:var(--primary)}
+.nav-links{display:flex;gap:30px;list-style:none;font-weight:500;font-size:16px}
+.nav-links a{color:var(--gray-200);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--primary)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-shade{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(66,66,66,.85) 0%,rgba(66,66,66,0) 35%),
+  linear-gradient(0deg,rgba(40,40,40,.55) 0%,rgba(40,40,40,0) 55%),
+  rgba(30,30,30,.25)}
+.hero-content{position:relative;padding:0 clamp(20px,2.6vw,50px) clamp(48px,8vh,90px);max-width:960px}
+.hero h1{font-size:clamp(34px,3.125vw,60px);font-weight:700;line-height:1.4;color:var(--white)}
+.accent{color:var(--primary)}
+.hero p{margin-top:8px;font-size:clamp(16px,1.04vw,20px);font-weight:600;max-width:720px}
+.btn-row{display:flex;flex-wrap:wrap;gap:24px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;padding:10px 30px;border-radius:30px;font-size:clamp(16px,1.04vw,20px);box-shadow:0 2px 10px rgba(0,0,0,.5);transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
+.btn-primary{background:var(--primary);color:var(--gray-800)}
+.btn-secondary{background:var(--secondary);color:var(--white)}
+
+/* TENTANG */
+.tentang{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center}
+.tentang-wash{position:absolute;inset:0;background:
+  radial-gradient(900px 700px at 0% 100%,rgba(219,230,76,.75),transparent 70%),
+  linear-gradient(90deg,rgba(0,128,76,.9) 0%,rgba(0,128,76,.55) 35%,rgba(116,196,101,.15) 65%,transparent 100%)}
+.tentang-grid{position:relative;width:100%;padding:110px var(--pad) 80px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.8fr);grid-template-areas:"text big" "small big";gap:48px 6vw;align-items:start}
+.tentang-text{grid-area:text}
+.tentang h2,.informasi h2,.galeri h2{font-size:clamp(36px,3.125vw,60px);font-weight:700;color:var(--white);line-height:1.4}
+.tentang-text p{margin-top:12px;font-size:clamp(15px,1.04vw,20px);font-weight:600;max-width:673px;color:#fff}
+.tentang-big{grid-area:big;border-radius:50px;aspect-ratio:529/714;box-shadow:0 1px 10px rgba(0,0,0,.25);width:100%;max-width:529px;justify-self:end}
+.tentang-small{grid-area:small;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2.2vw,73px)}
+.tentang-small .img-slot{border-radius:var(--radius);aspect-ratio:350/263;box-shadow:0 1px 10px rgba(0,0,0,.25)}
+
+/* INFORMASI */
+.informasi{position:relative;min-height:100vh;overflow:hidden;background:var(--gray-800)}
+.informasi-wash{position:absolute;inset:0;background:
+  radial-gradient(800px 600px at 0% 20%,rgba(219,230,76,.55),transparent 70%),
+  linear-gradient(90deg,rgba(116,196,101,.75) 0%,rgba(0,128,76,.45) 35%,rgba(0,128,76,.15) 70%,transparent 100%)}
+.informasi-grid{position:relative;padding:110px var(--pad) 80px;display:grid;grid-template-columns:496fr 533fr 533fr;gap:clamp(20px,2.9vw,56px);grid-template-areas:"text bilik parkir" "makan bilik maps";align-items:stretch}
+.info-text{grid-area:text}
+.info-text p{margin-top:16px;font-size:clamp(15px,1.04vw,20px);font-weight:400;max-width:496px}
+.card{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 10px rgba(0,0,0,.25);display:flex;flex-direction:column;justify-content:flex-end;min-height:260px}
+.card-img{position:absolute;inset:0}
+.card-img.split{display:flex;flex-direction:column}
+.card-img.split .img-slot{flex:1}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,var(--secondary) 100%);pointer-events:none}
+.card-cap{position:relative;z-index:1;padding:25px;color:var(--white)}
+.card-cap h3{font-size:clamp(24px,2.08vw,40px);font-weight:600;line-height:1.4}
+.card-cap p{font-size:clamp(15px,1.04vw,20px)}
+.card-makan{grid-area:makan}
+.card-bilik{grid-area:bilik;min-height:520px}
+.card-parkir{grid-area:parkir;min-height:360px}
+.maps-box{grid-area:maps;background:var(--gray-400);color:var(--gray-800);border-radius:var(--radius);box-shadow:0 1px 10px rgba(0,0,0,.25);display:grid;place-items:center;padding:54px 25px;font-size:clamp(24px,2.08vw,40px);font-weight:600;transition:filter .2s}
+.maps-box:hover{filter:brightness(1.05)}
+
+/* GALERI */
+.galeri{position:relative;min-height:100vh;padding:110px var(--pad) 70px;background:
+  radial-gradient(520px 420px at 72% 37%,rgba(219,230,76,.95),rgba(168,213,89,.6) 50%,rgba(116,196,101,0) 100%),
+  radial-gradient(700px 500px at 30% 73%,rgba(0,128,76,.25),transparent 70%),
+  var(--primary);
+  display:flex;flex-direction:column;justify-content:center}
+.galeri-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:32px}
+.galeri .sub{font-size:clamp(24px,2.5vw,48px);font-weight:600;color:var(--white);line-height:1.4}
+.galeri-desc{max-width:832px;text-align:right;font-size:clamp(15px,1.04vw,20px);color:var(--gray-800)}
+.slider-viewport{overflow:hidden}
+.slider-track{--gap:clamp(24px,4.2vw,80px);display:flex;gap:var(--gap);transition:transform .45s ease}
+.slide{flex:0 0 calc((100% - 2 * var(--gap)) / 3);aspect-ratio:1/1;border-radius:var(--radius)}
+.slider-controls{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:40px}
+.arrow{background:none;border:0;cursor:pointer;color:var(--gray-200);padding:8px 12px;border-radius:8px;opacity:.8;transition:opacity .2s}
+.arrow:hover{opacity:1}
+.arrow:disabled{opacity:.3;cursor:default}
+.dots{display:flex;gap:13px}
+.dot{width:20px;height:20px;border-radius:50%;border:0;background:var(--gray-800);cursor:pointer;opacity:.85}
+.dot.active{background:var(--ternary);opacity:1}
+
+/* KONTAK */
+.kontak{background:var(--gray-800);padding:26px clamp(20px,2.8vw,54px) 28px}
+.kontak h2{font-size:clamp(36px,3.125vw,60px);font-weight:700}
+.kontak-link{display:inline-flex;align-items:center;gap:14px;margin-top:14px;font-family:'Inter','Plus Jakarta Sans',sans-serif;font-size:20px}
+.kontak-link:hover{text-decoration:underline}
+.globe{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff}
+.foot-notes{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:44px;font-size:clamp(13px,1.04vw,20px)}
+
+/* RESPONSIF dasar (belum ada desain mobile di Figma) */
+@media (max-width:1100px){
+  .tentang-grid{grid-template-columns:1fr;grid-template-areas:"text" "big" "small"}
+  .tentang-big{justify-self:start;max-width:420px}
+  .informasi-grid{grid-template-columns:1fr 1fr;grid-template-areas:"text text" "makan parkir" "bilik bilik" "maps maps"}
+  .slide{flex-basis:calc((100% - var(--gap)) / 2)}
+}
+@media (max-width:720px){
+  .nav-links{gap:14px;font-size:14px}
+  .brand{font-size:16px}
+  .tentang-small{grid-template-columns:1fr}
+  .informasi-grid{grid-template-columns:1fr;grid-template-areas:"text" "makan" "bilik" "parkir" "maps"}
+  .slide{flex-basis:100%}
+  .galeri-desc{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slider-track,.btn{transition:none}}
